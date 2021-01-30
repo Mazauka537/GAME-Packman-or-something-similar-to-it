@@ -1,10 +1,14 @@
 class Actor {
-    constructor(wayPoint, speed, fat, color) {
-        this.x = wayPoint.x;
-        this.y = wayPoint.y;
+    constructor(map, startWayPointNumber, speed, fat, color) {
+        this.x = map.wayPoints[startWayPointNumber].x;
+        this.y = map.wayPoints[startWayPointNumber].y;
         this.speed = speed;
         this.fat = fat;
         this.color = color;
+
+        this.wayPointNumber = map.wayPoints.length;
+        map.addActor()
+        //пути должны быть зеркальны, тоесть туда и сюда, отдуда и отсюда, не только от точки до других точек, но и от других точек до этой точки.
     }
     
     moveTo(wayPoint) {

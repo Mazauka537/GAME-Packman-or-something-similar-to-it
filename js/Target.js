@@ -1,6 +1,5 @@
 class Target extends Actor {
-    constructor(props) {
-        super(props);
-
+    constructor(map, wayPointNumber, speed, fat, color) {
+        super(map, wayPointNumber, speed, fat, color);
     }
 }
