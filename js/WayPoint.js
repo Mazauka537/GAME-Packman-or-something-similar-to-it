@@ -6,11 +6,18 @@ class WayPoint {
         this.speed = o.speed ?? 0;
         this.fat = o.fat ?? 4;
         this.color = o.color ?? 'green';
-        this.availableTurns = o.availableTurns ?? [];
+        this.availableTurns = o.availableTurns ?? {};
         this.ways = o.ways ?? [];
+        this.movingFrom = o.movingFrom ?? undefined;
+        this.movingTo = o.movingTo ?? undefined;
 
         this.direction = 'none';
         this.nextDirection = 'none';
+
+    }
+
+    isNearWayPoint(wayPoint) {
+        return Math.pow(this.x - wayPoint.x, 2) + Math.pow(this.y - wayPoint.y, 2) <= this.speed * this.speed;
     }
 
     moveTo(wayPoint) {

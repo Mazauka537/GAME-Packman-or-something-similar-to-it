@@ -4,7 +4,7 @@ class Map {
         this.wayPoints = this.initializeWayPoints();
 
 
-        this.mapVisible = false;
+        this.mapVisible = true;
         this.wayPointsVisible = true;
         this.wayToTargetVisible = true;
         this.waysVisible = true;
@@ -87,66 +87,66 @@ class Map {
         let down = 'down';
 
         let wayPointsAvailableTurns = [
-            [up, right, down], //0
-            [right, down],
-            [left, down, right],
-            [left, down, right],
-            [left, down, right],
-            [left, down],
-            [down, right],
-            [left, down],
-            [left, up],
-            [right],
-            [up, right, down], //10
-            [up, right, down],
-            [left, up],
-            [up, right],
-            [left, down],
-            [left, up, down],
-            [right],
-            [left, up],
-            [left, up],
-            [up, right, down],
-            [up, right, down], //20
-            [up, right, down],
-            [left, up, right],
-            [up, right, down],
-            [up, right],
-            [left, up],
-            [left, down],
-            [left, down],
-            [up, right],
-            [left, up, right],
-            [left, up, right], //30
-            [up, right],
-            [up, right],
-            [left, up, down],
-            [left, up, down],
-            [left, up, right, down],
-            [left, up],
-            [right, down],
-            [left, up, down],
-            [left, down],
-            [up, right], //40
-            [right],
-            [left, down],
-            [left, up, down],
-            [left, up, down],
-            [right, down],
-            [up, right, down],
-            [left, down],
-            [up],
-            [down],
-            [left, up], //50
-            [up, right, down],
-            [up, right],
-            [left, up, down],
-            [up, right],
-            [right, down],
-            [left, up, right],
-            [left],
-            [left, up],
-            [left, up, down], //59
+            {up: 1, right: 33, down: 23}, //0
+            {right: 2, down: 0},
+            {left: 1, right: 3, down: 18},
+            {left: 2, right: 4, down: 17},
+            {left: 3, right: 5, down: 10},
+            {left: 4, down: 11},
+            {right: 7, down: 33},
+            {left: 6, down: 8},
+            {left: 9, up: 7},
+            {right: 8},
+            {up: 4, right: 12, down: 13}, //10
+            {up: 5, right: 38, down: 12},
+            {left: 10, up: 11},
+            {up: 10, right: 14},
+            {left: 13, down: 15},
+            {left: 16, up: 14, down: 34},
+            {right: 15},
+            {left: 20, up: 3},
+            {left: 19, up: 2},
+            {up: 33, right: 18, down: 20},
+            {up: 19, right: 17, down: 21}, //20
+            {up: 20, right: 27, down: 22},
+            {left: 23, up: 21, right: 26},
+            {up: 0, right: 22, down: 24},
+            {up: 23, right: 25},
+            {left: 24, up: 26},
+            {left: 22, down: 25},
+            {left: 21, down: 28},
+            {up: 27, right: 29},
+            {left: 28, up: 32, right: 30},
+            {left: 29, up: 31, right: 36}, //30
+            {right: 35, down: 30},
+            {right: 34, down: 29},
+            {left: 0, up: 6, down: 19},
+            {left: 32, up: 15, down: 35},
+            {left: 31, up: 34, right: 53, down: 36},
+            {left: 30, up: 35},
+            {right: 39, down: 38},
+            {left: 11, up: 37, down: 53},
+            {left: 37, down: 40},
+            {up: 39, right: 43}, //40
+            {right: 42},
+            {left: 41, down: 43},
+            {left: 40, up: 42, down: 44},
+            {left: 45, up: 43, down: 59},
+            {right: 44, down: 46},
+            {up: 45, right: 47, down: 51},
+            {left: 46, down: 48},
+            {up: 47},
+            {down: 50},
+            {left: 51, up: 49}, //50
+            {up: 46, right: 50, down: 52},
+            {up: 51, right: 59},
+            {left: 35, up: 38, down: 54},
+            {up: 53, right: 56},
+            {right: 58, down: 56},
+            {left: 54, up: 55, right: 57},
+            {left: 56},
+            {left: 55, up: 59},
+            {left: 53, up: 44, down: 58}, //59
         ];
 
         if (wayPointsAvailableTurns.length !== wayPointsCount)
@@ -165,7 +165,6 @@ class Map {
             wayPointsWays[0][33] = 1;
             wayPointsWays[0][23] = 4;
             wayPointsWays[1][2] = 4;
-            wayPointsWays[1][23] = 6;
             wayPointsWays[2][3] = 1;
             wayPointsWays[2][18] = 3;
             wayPointsWays[3][4] = 1;
@@ -273,6 +272,8 @@ class Map {
             color: color,
             availableTurns: this.wayPoints[startWayPointNumber].availableTurns,
             ways: this.wayPoints[startWayPointNumber].ways,
+            movingFrom: startWayPointNumber,
+            movingTo: startWayPointNumber,
         });
 
         wayPoint.ways.push(this.inf);
@@ -394,12 +395,12 @@ class Map {
 
             for (let i = 0; i < this.wayPoints.length; i++) {
                 for (let j = 0; j < this.wayPoints.length; j++) {
-                    if (i < j) {
+                    // if (i < j) {
                         if (this.wayPoints[i].ways[j] !== this.inf) {
                             ctx.moveTo(this.wayPoints[i].x, this.wayPoints[i].y);
                             ctx.lineTo(this.wayPoints[j].x, this.wayPoints[j].y);
                         }
-                    }
+                    // }
                 }
             }
 
