@@ -6,8 +6,8 @@ class Map {
 
         this.mapVisible = true;
         this.wayPointsVisible = true;
-        this.waysVisible = true;
-        this.waysCostVisible = true;
+        this.waysVisible = false;
+        this.waysCostVisible = false;
         this.wayPointsAvailableTurnsVisible = true;
         this.wayPointsNumberVisible = true;
     }
@@ -146,7 +146,7 @@ class Map {
             {left: 54, up: 55, right: 57},
             {left: 56},
             {left: 55, up: 59},
-            {left: 53, up: 44, down: 58}, //59
+            {left: 52, up: 44, down: 58}, //59
         ];
 
         if (wayPointsAvailableTurns.length !== wayPointsCount)
