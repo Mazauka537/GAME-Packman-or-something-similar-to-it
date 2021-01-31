@@ -6,10 +6,10 @@ class Map {
 
         this.mapVisible = true;
         this.wayPointsVisible = true;
-        this.wayToTargetVisible = true;
         this.waysVisible = true;
         this.waysCostVisible = true;
-
+        this.wayPointsAvailableTurnsVisible = true;
+        this.wayPointsNumberVisible = true;
     }
 
     initializeWayPoints() {
@@ -183,6 +183,7 @@ class Map {
             wayPointsWays[13][14] = 3;
             wayPointsWays[14][15] = 1;
             wayPointsWays[15][16] = 3;
+            wayPointsWays[15][34] = 1;
             wayPointsWays[17][20] = 4;
             wayPointsWays[18][19] = 3;
             wayPointsWays[19][20] = 1;
@@ -412,7 +413,7 @@ class Map {
 
             for (let i = 0; i < this.wayPoints.length; i++) {
                 ctx.beginPath();
-                ctx.arc(this.wayPoints[i].x, this.wayPoints[i].y, 5, 0, Math.PI * 2);
+                ctx.arc(this.wayPoints[i].x, this.wayPoints[i].y, 10, 0, Math.PI * 2);
                 ctx.fill();
             }
         }
@@ -431,6 +432,50 @@ class Map {
                         }
                     }
                 }
+            }
+        }
+
+        if (this.wayPointsAvailableTurnsVisible) {
+            ctx.fillStyle = 'green';
+
+            for (let i = 0; i < this.wayPoints.length; i++) {
+                ctx.beginPath();
+
+                if (this.wayPoints[i].availableTurns.left !== undefined) {
+                    ctx.moveTo(this.wayPoints[i].x - 25, this.wayPoints[i].y);
+                    ctx.lineTo(this.wayPoints[i].x - 12, this.wayPoints[i].y - 7);
+                    ctx.lineTo(this.wayPoints[i].x - 12, this.wayPoints[i].y + 7);
+                }
+
+                if (this.wayPoints[i].availableTurns.right !== undefined) {
+                    ctx.moveTo(this.wayPoints[i].x + 25, this.wayPoints[i].y);
+                    ctx.lineTo(this.wayPoints[i].x + 12, this.wayPoints[i].y - 7);
+                    ctx.lineTo(this.wayPoints[i].x + 12, this.wayPoints[i].y + 7);
+                }
+
+                if (this.wayPoints[i].availableTurns.up !== undefined) {
+                    ctx.moveTo(this.wayPoints[i].x, this.wayPoints[i].y - 25);
+                    ctx.lineTo(this.wayPoints[i].x - 7, this.wayPoints[i].y - 12);
+                    ctx.lineTo(this.wayPoints[i].x + 7, this.wayPoints[i].y - 12);
+                }
+
+                if (this.wayPoints[i].availableTurns.down !== undefined) {
+                    ctx.moveTo(this.wayPoints[i].x, this.wayPoints[i].y + 25);
+                    ctx.lineTo(this.wayPoints[i].x - 7, this.wayPoints[i].y + 12);
+                    ctx.lineTo(this.wayPoints[i].x + 7, this.wayPoints[i].y + 12);
+                }
+                ctx.fill();
+            }
+        }
+
+        if (this.wayPointsNumberVisible) {
+            ctx.fillStyle = 'black';
+            ctx.font = 'normal 16px Consolas';
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+
+            for (let i = 0; i < this.wayPoints.length; i++) {
+                ctx.fillText(this.wayPoints[i].number, this.wayPoints[i].x, this.wayPoints[i].y);
             }
         }
 
