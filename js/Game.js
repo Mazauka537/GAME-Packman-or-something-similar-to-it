@@ -28,10 +28,13 @@ class Game {
 
                 if (this.target.availableTurns[this.target.nextDirection] !== undefined) { //если от точки к которой приблизились можно повернуть в задуманном направлении
                     this.target.direction = this.target.nextDirection; //то делаем задуманное направление текущим
-                    this.target.movingTo = this.target.availableTurns[this.target.direction]; //и делаем точку в этом направлении точкой назначения
                 }
 
-                this.target.availableTurns = this.map.wayPoints[this.target.movingTo].availableTurns; //меняем доступные направления на направления точки к которой движемся
+                if (this.target.availableTurns[this.target.direction] !== undefined) { //если от точки к которой приблизились можно повернуть в текущем направлении
+                    this.target.movingTo = this.target.availableTurns[this.target.direction]; //то делаем точку в текущем направлении точкой назначения
+                }
+
+                this.target.availableTurns = this.map.wayPoints[this.target.movingTo].availableTurns; //меняем доступные направления на направления точки назначения
             }
 
         }
@@ -44,41 +47,66 @@ class Game {
     keyDown(e) {
         switch (e.keyCode) {
             case 37: //left
-                if (this.target.availableTurns.left !== undefined) {
-                    this.target.nextDirection = 'left';
-                    if (this.target.direction === 'none') {
-                        this.target.movingTo = this.target.availableTurns.left;
-                        this.target.direction = 'left';
-                    }
+                this.target.nextDirection = 'left';
+                if (this.target.direction === 'none' && this.target.availableTurns['left'] !== undefined) {
+                    this.initializeTargetDirection('left');
+                }
+                if (this.target.direction === 'right') {
+                    this.reverseTargetDirection('right');
                 }
                 break;
             case 38: //up
-                if (this.target.availableTurns.up !== undefined) {
-                    this.target.nextDirection = 'up';
-                    if (this.target.direction === 'none') {
-                        this.target.movingTo = this.target.availableTurns.up;
-                        this.target.direction = 'up';
-                    }
+                this.target.nextDirection = 'up';
+                if (this.target.direction === 'none' && this.target.availableTurns['up'] !== undefined) {
+                    this.initializeTargetDirection('up');
+                }
+                if (this.target.direction === 'down') {
+                    this.reverseTargetDirection('down');
                 }
                 break;
             case 39: //right
-                if (this.target.availableTurns.right !== undefined) {
-                    this.target.nextDirection = 'right';
-                    if (this.target.direction === 'none') {
-                        this.target.movingTo = this.target.availableTurns.right;
-                        this.target.direction = 'right';
-                    }
+                this.target.nextDirection = 'right';
+                if (this.target.direction === 'none' && this.target.availableTurns['right'] !== undefined) {
+                    this.initializeTargetDirection('right');
+                }
+                if (this.target.direction === 'left') {
+                    this.reverseTargetDirection('left');
+
                 }
                 break;
             case 40: //down
-                if (this.target.availableTurns.down !== undefined) {
-                    this.target.nextDirection = 'down';
-                    if (this.target.direction === 'none') {
-                        this.target.movingTo = this.target.availableTurns.down;
-                        this.target.direction = 'down';
-                    }
+                this.target.nextDirection = 'down';
+                if (this.target.direction === 'none' && this.target.availableTurns['down'] !== undefined) {
+                    this.initializeTargetDirection('down');
+                }
+                if (this.target.direction === 'up') {
+                    this.reverseTargetDirection('up');
                 }
                 break;
         }
+    }
+
+    initializeTargetDirection(direction) {
+        this.target.movingTo = this.target.availableTurns[direction];
+        this.target.availableTurns = this.map.wayPoints[this.target.movingTo].availableTurns;
+        this.target.direction = direction;
+    }
+
+    reverseTargetDirection(currentDirection) {
+        let reverseDirection = undefined;
+        if (currentDirection === 'left')
+            reverseDirection = 'right';
+        if (currentDirection === 'up')
+            reverseDirection = 'down';
+        if (currentDirection === 'right')
+            reverseDirection = 'left';
+        if (currentDirection === 'down')
+            reverseDirection = 'up';
+
+        let x = this.target.movingFrom;
+        this.target.movingFrom = this.target.movingTo;
+        this.target.movingTo = this.map.wayPoints[this.target.movingFrom].availableTurns[reverseDirection];
+        this.target.availableTurns = this.map.wayPoints[this.target.movingTo].availableTurns;
+        this.target.direction = reverseDirection;
     }
 }
