@@ -1,13 +1,15 @@
 class Map {
     constructor() {
         this.inf = 999;
+        this.offset = 50;
+        this.multiplier = 100;
         this.wayPoints = this.initializeWayPoints();
 
 
         this.mapVisible = true;
         this.wayPointsVisible = true;
-        this.waysVisible = false;
-        this.waysCostVisible = false;
+        this.waysVisible = true;
+        this.waysCostVisible = true;
         this.wayPointsAvailableTurnsVisible = true;
         this.wayPointsNumberVisible = true;
     }
@@ -245,16 +247,13 @@ class Map {
                 throw new Error('wayPointsWays is not correct');
         }
 
-        let offset = 50;
-        let multiplier = 100;
-
         let wayPoints = [];
 
         for (let i = 0; i < wayPointsCount; i++) {
             wayPoints.push(new WayPoint({
                 number: i,
-                x: (wayPointsPositionTemplates[i][0] + 1) * multiplier - offset,
-                y: (wayPointsPositionTemplates[i][1] + 1) * multiplier - offset,
+                x: (wayPointsPositionTemplates[i][0] + 1) * this.multiplier - this.offset,
+                y: (wayPointsPositionTemplates[i][1] + 1) * this.multiplier - this.offset,
                 availableTurns: wayPointsAvailableTurns[i],
                 ways: wayPointsWays[i],
             }));
@@ -264,6 +263,11 @@ class Map {
     }
 
     addNewWayPoint(startWayPointNumber, speed, fat, color) {
+        let ways = [];
+        for (let i = 0; i < this.wayPoints.length + 1; i++) {
+            ways[i] = this.inf;
+        }
+
         let wayPoint = new WayPoint({
             number: this.wayPoints.length,
             x: this.wayPoints[startWayPointNumber].x,
@@ -272,7 +276,7 @@ class Map {
             fat: fat,
             color: color,
             availableTurns: this.wayPoints[startWayPointNumber].availableTurns,
-            ways: this.wayPoints[startWayPointNumber].ways,
+            ways: ways,
             movingFrom: startWayPointNumber,
             movingTo: startWayPointNumber,
         });
@@ -289,6 +293,9 @@ class Map {
     }
 
     render() {
+        ctx.fillStyle = '#222';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
         if (this.mapVisible) {
             ctx.beginPath();
 

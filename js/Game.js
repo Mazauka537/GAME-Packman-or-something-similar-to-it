@@ -22,6 +22,12 @@ class Game {
                 this.target.y = this.map.wayPoints[this.target.movingFrom].y;
             }
 
+            this.target.ways[this.target.movingFrom] = this.map.inf;
+            this.target.ways[this.target.movingTo] = this.map.inf;
+
+            this.map.wayPoints[this.target.movingFrom].ways[this.target.number] = this.map.inf;
+            this.map.wayPoints[this.target.movingTo].ways[this.target.number] = this.map.inf;
+
             if (this.target.isNearWayPoint(this.map.wayPoints[this.target.movingTo])) { //когда приблизились к точке назначения
 
                 this.target.movingFrom = this.target.movingTo; //делаем точкой отправления ту точку к которой приблизились
@@ -37,7 +43,17 @@ class Game {
                 this.target.availableTurns = this.map.wayPoints[this.target.movingTo].availableTurns; //меняем доступные направления на направления точки назначения
             }
 
+            let distanceFrom = (this.target.getDistanceTo(this.map.wayPoints[this.target.movingFrom]) / this.map.multiplier).toFixed(1);
+            let distanceTo = (this.target.getDistanceTo(this.map.wayPoints[this.target.movingTo]) / this.map.multiplier).toFixed(1);
+
+            this.target.ways[this.target.movingFrom] = distanceFrom;
+            this.target.ways[this.target.movingTo] = distanceTo;
+
+            this.map.wayPoints[this.target.movingFrom].ways[this.target.number] = distanceFrom;
+            this.map.wayPoints[this.target.movingTo].ways[this.target.number] = distanceTo;
         }
+
+        let routeToTarget = this.hunter.getRouteTo(this.target);
 
         this.map.render();
         this.target.render();
