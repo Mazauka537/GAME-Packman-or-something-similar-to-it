@@ -293,7 +293,14 @@ class Map {
             ctx.beginPath();
 
             ctx.strokeStyle = '#ddd';
-            ctx.lineWidth = 2;
+            ctx.lineWidth = 50;
+            ctx.lineCap = 'square';
+
+            ctx.moveTo(0, 0);
+            ctx.lineTo(canvas.width, 0);
+            ctx.lineTo(canvas.width, canvas.height);
+            ctx.lineTo(0, canvas.height);
+            ctx.lineTo(0, 0);
 
             ctx.moveTo(100, 600);
             ctx.lineTo(100, 300);
