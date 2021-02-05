@@ -14,6 +14,54 @@ class Map {
         this.wayPointsNumberVisible = true;
     }
 
+    getRoute(startPoint, endPoint) {
+        let visited = [];
+        let distanceTo = [];
+        let pathTo = [];
+        let wayPoints = this.wayPoints;
+        let inf = this.inf;
+
+        for (let i = 0; i < this.wayPoints.length; i++) {
+            visited[i] = false;
+            distanceTo[i] = this.inf;
+            pathTo[i] = '';
+        }
+
+        distanceTo[startPoint] = 0;
+
+        //start recursive algorithm
+        step(startPoint);
+
+        let result = pathTo[endPoint].split('-');
+        result.pop();
+        return result;
+
+        function step(currentPoint) {
+            for (let i = 0; i < wayPoints[currentPoint].ways.length; i++) {
+                if (wayPoints[currentPoint].ways[i] !== inf && !visited[currentPoint]) {
+                    if (distanceTo[currentPoint] + wayPoints[currentPoint].ways[i] < distanceTo[i]) {
+                        distanceTo[i] = distanceTo[currentPoint] + wayPoints[currentPoint].ways[i];
+                        pathTo[i] = pathTo[currentPoint] + i + '-';
+                    }
+                }
+            }
+
+            visited[currentPoint] = true;
+
+            let min = inf;
+            let nextPoint = null;
+
+            for (let i = 0; i < distanceTo.length; i++) {
+                if (!visited[i] && distanceTo[i] < min) {
+                    min = distanceTo[i];
+                    nextPoint = i;
+                }
+            }
+
+            if (nextPoint !== null && nextPoint !== endPoint) step(nextPoint);
+        }
+    }
+
     initializeWayPoints() {
         let wayPointsCount = 60;
 
@@ -281,13 +329,13 @@ class Map {
             movingTo: startWayPointNumber,
         });
 
-        wayPoint.ways.push(this.inf);
-
-        this.wayPoints.push(wayPoint);
+        wayPoint.ways[startWayPointNumber] = 0;
 
         for (let i = 0; i < this.wayPoints.length; i++) {
             this.wayPoints[i].ways.push(wayPoint.ways[i]);
         }
+
+        this.wayPoints.push(wayPoint);
 
         return this.wayPoints[this.wayPoints.length - 1];
     }

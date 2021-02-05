@@ -2,7 +2,7 @@ class Game {
     constructor() {
         this.map = new Map();
         this.target = this.map.addNewWayPoint(4, 5, 10, 'white');
-        this.hunter = this.map.addNewWayPoint(59, 10, 8, 'red');
+        this.hunter = this.map.addNewWayPoint(59, 4, 8, 'red');
 
         document.onkeydown = (e) => this.keyDown(e);
 
@@ -12,7 +12,10 @@ class Game {
 
     frameHandler() {
         ctx.clearRect(0, 0, width, height);
+        
+        let distanceFrom, distanceTo;
 
+        //алгоритм движения target
         if (this.target.direction !== 'none') {
 
             if (this.map.wayPoints[this.target.movingFrom].availableTurns[this.target.direction] !== undefined) {//если напровление от точки отправления доступно
@@ -43,8 +46,8 @@ class Game {
                 this.target.availableTurns = this.map.wayPoints[this.target.movingTo].availableTurns; //меняем доступные направления на направления точки назначения
             }
 
-            let distanceFrom = (this.target.getDistanceTo(this.map.wayPoints[this.target.movingFrom]) / this.map.multiplier).toFixed(1);
-            let distanceTo = (this.target.getDistanceTo(this.map.wayPoints[this.target.movingTo]) / this.map.multiplier).toFixed(1);
+            distanceFrom = +(this.target.getDistanceTo(this.map.wayPoints[this.target.movingFrom]) / this.map.multiplier).toFixed(1);
+            distanceTo = +(this.target.getDistanceTo(this.map.wayPoints[this.target.movingTo]) / this.map.multiplier).toFixed(1);
 
             this.target.ways[this.target.movingFrom] = distanceFrom;
             this.target.ways[this.target.movingTo] = distanceTo;
@@ -53,7 +56,51 @@ class Game {
             this.map.wayPoints[this.target.movingTo].ways[this.target.number] = distanceTo;
         }
 
-        let routeToTarget = this.hunter.getRouteTo(this.target);
+        //алгоритм движения hunter
+        if (this.hunter.movingTo === this.target.number && this.target.movingTo !== this.hunter.movingFrom) {
+            if (this.target.isNearWayPoint(this.map.wayPoints[this.target.movingFrom])) {
+                this.hunter.ways[this.hunter.movingTo] = this.map.inf;
+                this.map.wayPoints[this.hunter.movingTo].ways[this.hunter.number] = this.map.inf;
+
+                this.hunter.movingTo = this.target.movingFrom;
+
+                distanceTo = +(this.hunter.getDistanceTo(this.map.wayPoints[this.hunter.movingTo]) / this.map.multiplier).toFixed(1);
+                this.hunter.ways[this.hunter.movingTo] = distanceTo;
+                this.map.wayPoints[this.hunter.movingTo].ways[this.hunter.number] = distanceTo;
+            }
+        }
+
+        let routeToTarget = this.map.getRoute(this.hunter.number, this.target.number);
+        
+        if (+routeToTarget[0] === this.hunter.movingFrom) {
+            let x = this.hunter.movingFrom;
+            this.hunter.movingFrom = this.hunter.movingTo;
+            this.hunter.movingTo = x;
+        }
+
+        this.hunter.movingTo = +routeToTarget[0];
+
+        this.hunter.moveTo(this.map.wayPoints[this.hunter.movingTo]);
+
+        this.hunter.ways[this.hunter.movingFrom] = this.map.inf;
+        this.hunter.ways[this.hunter.movingTo] = this.map.inf;
+        this.map.wayPoints[this.hunter.movingFrom].ways[this.hunter.number] = this.map.inf;
+        this.map.wayPoints[this.hunter.movingTo].ways[this.hunter.number] = this.map.inf;
+
+        if (this.hunter.isNearWayPoint(this.map.wayPoints[this.hunter.movingTo])) {
+            this.hunter.movingFrom = this.hunter.movingTo;
+            this.hunter.movingTo = +routeToTarget[1];
+        }
+
+        distanceFrom = +(this.hunter.getDistanceTo(this.map.wayPoints[this.hunter.movingFrom]) / this.map.multiplier).toFixed(1);
+        distanceTo = +(this.hunter.getDistanceTo(this.map.wayPoints[this.hunter.movingTo]) / this.map.multiplier).toFixed(1);
+
+        this.hunter.ways[this.hunter.movingFrom] = distanceFrom;
+        this.hunter.ways[this.hunter.movingTo] = distanceTo;
+
+        this.map.wayPoints[this.hunter.movingFrom].ways[this.hunter.number] = distanceFrom;
+        this.map.wayPoints[this.hunter.movingTo].ways[this.hunter.number] = distanceTo;
+
 
         this.map.render();
         this.target.render();

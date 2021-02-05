@@ -17,12 +17,8 @@ class WayPoint {
         // this.pxDelay = this.speed * 3;
     }
 
-    getRouteTo(wayPoint) {
-
-    }
-
     isNearWayPoint(wayPoint) {
-        return Math.pow(this.x - wayPoint.x, 2) + Math.pow(this.y - wayPoint.y, 2) <= this.speed * this.speed;
+        return Math.pow(this.x - wayPoint.x, 2) + Math.pow(this.y - wayPoint.y, 2) <= Math.pow(this.speed, 2);
     }
 
     // isNearWayPointWithDelay(wayPoint) {
@@ -44,8 +40,10 @@ class WayPoint {
     moveTo(wayPoint) {
         let distance = this.getDistanceTo(wayPoint);
         let lambda = this.speed / (distance - this.speed);
-        this.x = (this.x + lambda * wayPoint.x) / (1 + lambda);
-        this.y = (this.y + lambda * wayPoint.y) / (1 + lambda);
+        if (lambda !== -1) {
+            this.x = (this.x + lambda * wayPoint.x) / (1 + lambda);
+            this.y = (this.y + lambda * wayPoint.y) / (1 + lambda);
+        }
     }
 
     getDistanceTo(wayPoint) {
