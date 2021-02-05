@@ -302,6 +302,7 @@ class Map {
                 number: i,
                 x: (wayPointsPositionTemplates[i][0] + 1) * this.multiplier - this.offset,
                 y: (wayPointsPositionTemplates[i][1] + 1) * this.multiplier - this.offset,
+                fat: 10,
                 availableTurns: wayPointsAvailableTurns[i],
                 ways: wayPointsWays[i],
             }));
@@ -310,13 +311,13 @@ class Map {
         return wayPoints;
     }
 
-    addNewWayPoint(startWayPointNumber, speed, fat, color) {
+    addNewActor(startWayPointNumber, speed, fat, color) {
         let ways = [];
         for (let i = 0; i < this.wayPoints.length + 1; i++) {
             ways[i] = this.inf;
         }
 
-        let wayPoint = new WayPoint({
+        let wayPoint = new Actor({
             number: this.wayPoints.length,
             x: this.wayPoints[startWayPointNumber].x,
             y: this.wayPoints[startWayPointNumber].y,
@@ -475,7 +476,7 @@ class Map {
 
             for (let i = 0; i < this.wayPoints.length; i++) {
                 ctx.beginPath();
-                ctx.arc(this.wayPoints[i].x, this.wayPoints[i].y, 10, 0, Math.PI * 2);
+                ctx.arc(this.wayPoints[i].x, this.wayPoints[i].y, this.wayPoints[i].fat, 0, Math.PI * 2);
                 ctx.fill();
             }
         }
