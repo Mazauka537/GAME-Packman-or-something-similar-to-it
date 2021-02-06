@@ -311,24 +311,34 @@ class Map {
         return wayPoints;
     }
 
-    addNewActor(startWayPointNumber, speed, fat, color) {
+    addNewActor(actorType, startWayPointNumber, speed, fat, color) {
         let ways = [];
         for (let i = 0; i < this.wayPoints.length + 1; i++) {
             ways[i] = this.inf;
         }
 
-        let wayPoint = new Actor({
-            number: this.wayPoints.length,
-            x: this.wayPoints[startWayPointNumber].x,
-            y: this.wayPoints[startWayPointNumber].y,
-            speed: speed,
-            fat: fat,
-            color: color,
-            availableTurns: this.wayPoints[startWayPointNumber].availableTurns,
-            ways: ways,
-            movingFrom: startWayPointNumber,
-            movingTo: startWayPointNumber,
-        });
+        let wayPoint;
+        switch (actorType) {
+            case 'target':
+                wayPoint = new Target();
+                break;
+            case 'hunter':
+                wayPoint = new Hunter();
+                break;
+            default:
+                throw new Error('Unknown type of Actor');
+        }
+
+        wayPoint.number = this.wayPoints.length;
+        wayPoint.x = this.wayPoints[startWayPointNumber].x;
+        wayPoint.y = this.wayPoints[startWayPointNumber].y;
+        wayPoint.speed = speed;
+        wayPoint.fat = fat;
+        wayPoint.color = color;
+        wayPoint.availableTurns = this.wayPoints[startWayPointNumber].availableTurns;
+        wayPoint.ways = ways;
+        wayPoint.movingFrom = startWayPointNumber;
+        wayPoint.movingTo = startWayPointNumber;
 
         wayPoint.ways[startWayPointNumber] = 0;
 
@@ -460,10 +470,10 @@ class Map {
             for (let i = 0; i < this.wayPoints.length; i++) {
                 for (let j = 0; j < this.wayPoints.length; j++) {
                     // if (i < j) {
-                        if (this.wayPoints[i].ways[j] !== this.inf) {
-                            ctx.moveTo(this.wayPoints[i].x, this.wayPoints[i].y);
-                            ctx.lineTo(this.wayPoints[j].x, this.wayPoints[j].y);
-                        }
+                    if (this.wayPoints[i].ways[j] !== this.inf) {
+                        ctx.moveTo(this.wayPoints[i].x, this.wayPoints[i].y);
+                        ctx.lineTo(this.wayPoints[j].x, this.wayPoints[j].y);
+                    }
                     // }
                 }
             }
@@ -490,11 +500,11 @@ class Map {
             for (let i = 0; i < this.wayPoints.length; i++) {
                 for (let j = 0; j < this.wayPoints.length; j++) {
                     // if (i < j) {
-                        if (this.wayPoints[i].ways[j] !== this.inf) {
-                            let x = (this.wayPoints[i].x + this.wayPoints[j].x) / 2 + 3;
-                            let y = (this.wayPoints[i].y + this.wayPoints[j].y) / 2 + 3;
-                            ctx.fillText(this.wayPoints[i].ways[j], x, y);
-                        }
+                    if (this.wayPoints[i].ways[j] !== this.inf) {
+                        let x = (this.wayPoints[i].x + this.wayPoints[j].x) / 2 + 3;
+                        let y = (this.wayPoints[i].y + this.wayPoints[j].y) / 2 + 3;
+                        ctx.fillText(this.wayPoints[i].ways[j], x, y);
+                    }
                     // }
                 }
             }

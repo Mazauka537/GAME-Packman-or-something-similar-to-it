@@ -1,13 +1,10 @@
 class Actor extends WayPoint {
-    constructor(o) {
+    constructor(o = {}) {
         super(o);
 
         this.speed = o.speed ?? 0;
         this.movingFrom = o.movingFrom ?? undefined;
         this.movingTo = o.movingTo ?? undefined;
-
-        this.direction = 'none';
-        this.nextDirection = 'none';
 
         // this.pxDelay = this.speed * 3;
     }
