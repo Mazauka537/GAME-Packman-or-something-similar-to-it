@@ -7,11 +7,11 @@ class Map {
 
 
         this.mapVisible = true;
-        this.wayPointsVisible = true;
-        this.waysVisible = true;
-        this.waysCostVisible = true;
-        this.wayPointsAvailableTurnsVisible = true;
-        this.wayPointsNumberVisible = true;
+        this.wayPointsVisible = false;
+        this.waysVisible = false;
+        this.waysCostVisible = false;
+        this.wayPointsAvailableTurnsVisible = false;
+        this.wayPointsNumberVisible = false;
     }
 
     getRoute(startPoint, endPoint) {
@@ -459,12 +459,12 @@ class Map {
 
             for (let i = 0; i < this.wayPoints.length; i++) {
                 for (let j = 0; j < this.wayPoints.length; j++) {
-                    if (i < j) {
+                    // if (i < j) {
                         if (this.wayPoints[i].ways[j] !== this.inf) {
                             ctx.moveTo(this.wayPoints[i].x, this.wayPoints[i].y);
                             ctx.lineTo(this.wayPoints[j].x, this.wayPoints[j].y);
                         }
-                    }
+                    // }
                 }
             }
 
@@ -489,13 +489,13 @@ class Map {
 
             for (let i = 0; i < this.wayPoints.length; i++) {
                 for (let j = 0; j < this.wayPoints.length; j++) {
-                    if (i < j) {
+                    // if (i < j) {
                         if (this.wayPoints[i].ways[j] !== this.inf) {
                             let x = (this.wayPoints[i].x + this.wayPoints[j].x) / 2 + 3;
                             let y = (this.wayPoints[i].y + this.wayPoints[j].y) / 2 + 3;
                             ctx.fillText(this.wayPoints[i].ways[j], x, y);
                         }
-                    }
+                    // }
                 }
             }
         }
