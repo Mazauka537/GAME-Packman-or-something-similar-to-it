@@ -1,5 +1,10 @@
 class Game {
+    //TODO: когда охотник движется между двумя точками, и в эти точки входит таргет, то путь до таргета расчитывается не совсем корректно (охотник может начать движение обратно к точке отправления а потом только идти к таргету
     constructor() {
+        this.status = 'mainMenu';
+
+        this.menu = new Menu();
+
         this.map = new Map();
         this.target = this.map.addNewActor(4, 5.1, 10, 'white');
         this.hunters = [];
@@ -16,6 +21,12 @@ class Game {
 
     frameHandler() {
         ctx.clearRect(0, 0, width, height);
+
+        switch (this.status) {
+            case "mainMenu":
+                this.menu.render();
+                break;
+        }
 
         let distanceFrom, distanceTo;
 
