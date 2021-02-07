@@ -5,7 +5,7 @@ class Label extends UIElement {
         this.textAlign = o.textAlign ?? 'center';
         this.color = o.color ?? '#fff';
         this.font = o.font ?? 'Tahoma';
-        this.fontSize = o.fontSize ?? '24px';
+        this.fontSize = o.fontSize ?? 24;
     }
 
     render() {

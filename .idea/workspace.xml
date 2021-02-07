@@ -2,14 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6c65f1c7-b71d-48b5-9304-d06d4e112980" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/js/MenuScreen.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/PlayScreen.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/Actor.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/Actor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/Button.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/Button.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/Game.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/Game.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/Hunter.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/Hunter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/Map.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/Map.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/Label.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/Label.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/Menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/Menu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/Target.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/Target.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +44,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.tabs" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -58,7 +59,7 @@
       <workItem from="1611076083759" duration="4548000" />
       <workItem from="1611335310282" duration="5756000" />
       <workItem from="1611774447125" duration="4475000" />
-      <workItem from="1611856879142" duration="92219000" />
+      <workItem from="1611856879142" duration="100850000" />
     </task>
     <servers />
   </component>
@@ -70,6 +71,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="758" y="334" key="NewPhpClassDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1611774947048" />
+    <state x="665" y="179" key="SettingsEditor" timestamp="1612627713808">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="665" y="179" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1612627713808" />
     <state x="655" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1611335409711">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
