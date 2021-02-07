@@ -45,6 +45,10 @@ class MenuScreen {
     }
 
     frame() {
+
+    }
+
+    render() {
         this.title.render();
         for (let i = 0; i < this.buttons.length; i++) {
             if (this.selectedButton === i) {
@@ -54,7 +58,6 @@ class MenuScreen {
             }
         }
     }
-
 
     keyDown(e) {
         switch (e.keyCode) {

@@ -19,7 +19,9 @@ class PlayScreen {
         for (let i = 0; i < this.hunters.length; i++) {
             this.hunters[i].move(this.map, this.target);
         }
+    }
 
+    render() {
         this.map.render();
         this.target.render();
         for (let i = 0; i < this.hunters.length; i++) {
