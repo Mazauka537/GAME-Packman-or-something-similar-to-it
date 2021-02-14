@@ -14,7 +14,8 @@ class Map {
         this.wayPointsNumberVisible = false;
     }
 
-    getRoute(startPoint, endPoint) {
+    getRoute(startWayPoint, endWayPoints) {
+        let startPoint = startWayPoint.number;
         let visited = [];
         let distanceTo = [];
         let pathTo = [];
@@ -32,9 +33,17 @@ class Map {
         //start recursive algorithm
         step(startPoint);
 
-        let result = pathTo[endPoint].split('-');
-        result.pop();
-        return result;
+        let routes = [];
+        for (let i = 0; i < this.wayPoints.length; i++) {
+            let x = pathTo[i].split('-');
+            x.pop();
+            routes.push(x);
+        }
+
+        return {
+            routeTo: routes,
+            distanceTo: distanceTo,
+        };
 
         function step(currentPoint) {
             for (let i = 0; i < wayPoints[currentPoint].ways.length; i++) {
@@ -58,7 +67,15 @@ class Map {
                 }
             }
 
-            if (nextPoint !== null && nextPoint !== endPoint) step(nextPoint);
+            let finish = true;
+            for (let i = 0; i < endWayPoints.length; i++) {
+                if (!visited[endWayPoints[i].number]) {
+                    finish = false;
+                    break;
+                }
+            }
+
+            if (nextPoint !== null && !finish) step(nextPoint);
         }
     }
 

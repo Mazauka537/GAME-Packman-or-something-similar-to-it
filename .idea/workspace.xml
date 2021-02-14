@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="6c65f1c7-b71d-48b5-9304-d06d4e112980" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/Game.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/Game.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/Hunter.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/Hunter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/Map.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/Map.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/MenuScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/MenuScreen.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/PlayScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/PlayScreen.js" afterDir="false" />
     </list>
@@ -63,7 +64,7 @@
       <workItem from="1613147248855" duration="291000" />
       <workItem from="1613147614142" duration="40000" />
       <workItem from="1613147667614" duration="294000" />
-      <workItem from="1613148018644" duration="18339000" />
+      <workItem from="1613148018644" duration="24137000" />
     </task>
     <servers />
   </component>

@@ -19,7 +19,7 @@ class Hunter extends Actor {
             }
         }
 
-        let routeToTarget = map.getRoute(this.number, target.number); //получаем порядок точек для движения к таргету
+        let routeToTarget = map.getRoute(this, [target]).routeTo[target.number];
 
         if (+routeToTarget[0] === this.movingFrom) { //если следующая точка к которой нужно двигаться - точка от которой мы уже движимся
             //то необходимо развернуться, тоесть поменять точки отправления и назначения
