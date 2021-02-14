@@ -30,44 +30,42 @@ class PlayScreen {
     }
 
     keyDown(e) {
-        switch (e.keyCode) {
-            case 37: //left
-                this.target.nextDirection = 'left';
-                if (this.target.direction === 'none' && this.target.availableTurns['left'] !== undefined) {
-                    this.initializeTargetDirection('left');
-                }
-                if (this.target.direction === 'right') {
-                    this.reverseTargetDirection('right');
-                }
-                break;
-            case 38: //up
-                this.target.nextDirection = 'up';
-                if (this.target.direction === 'none' && this.target.availableTurns['up'] !== undefined) {
-                    this.initializeTargetDirection('up');
-                }
-                if (this.target.direction === 'down') {
-                    this.reverseTargetDirection('down');
-                }
-                break;
-            case 39: //right
-                this.target.nextDirection = 'right';
-                if (this.target.direction === 'none' && this.target.availableTurns['right'] !== undefined) {
-                    this.initializeTargetDirection('right');
-                }
-                if (this.target.direction === 'left') {
-                    this.reverseTargetDirection('left');
+        if (e.code === this.game.settings.p1Control.left) { //left
+            this.target.nextDirection = 'left';
+            if (this.target.direction === 'none' && this.target.availableTurns['left'] !== undefined) {
+                this.initializeTargetDirection('left');
+            }
+            if (this.target.direction === 'right') {
+                this.reverseTargetDirection('right');
+            }
+        }
+        if (e.code === this.game.settings.p1Control.up) { //up
+            this.target.nextDirection = 'up';
+            if (this.target.direction === 'none' && this.target.availableTurns['up'] !== undefined) {
+                this.initializeTargetDirection('up');
+            }
+            if (this.target.direction === 'down') {
+                this.reverseTargetDirection('down');
+            }
+        }
+        if (e.code === this.game.settings.p1Control.right) { //right
+            this.target.nextDirection = 'right';
+            if (this.target.direction === 'none' && this.target.availableTurns['right'] !== undefined) {
+                this.initializeTargetDirection('right');
+            }
+            if (this.target.direction === 'left') {
+                this.reverseTargetDirection('left');
 
-                }
-                break;
-            case 40: //down
-                this.target.nextDirection = 'down';
-                if (this.target.direction === 'none' && this.target.availableTurns['down'] !== undefined) {
-                    this.initializeTargetDirection('down');
-                }
-                if (this.target.direction === 'up') {
-                    this.reverseTargetDirection('up');
-                }
-                break;
+            }
+        }
+        if (e.code === this.game.settings.p1Control.down) { //down
+            this.target.nextDirection = 'down';
+            if (this.target.direction === 'none' && this.target.availableTurns['down'] !== undefined) {
+                this.initializeTargetDirection('down');
+            }
+            if (this.target.direction === 'up') {
+                this.reverseTargetDirection('up');
+            }
         }
     }
 

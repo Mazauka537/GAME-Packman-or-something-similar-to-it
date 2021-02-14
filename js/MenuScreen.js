@@ -179,11 +179,11 @@ class MenuScreen {
     }
 
     keyDown(e) {
-        console.log(e.keyCode, e.key, e.keyText);
+        console.log(e.keyCode, e.key, e.code);
 
         if (this.status === 'controlChanging') {
             if (e.key !== 'Backspace' && e.key !== 'Escape') {
-                this.game.settings[this.changingPlayer][this.changingDirection] = e.key;
+                this.game.settings[this.changingPlayer][this.changingDirection] = e.code;
                 this.settingsButtons[this.changingBtnIndex].btnText = this.game.settings[this.changingPlayer][this.changingDirection];
                 this.labelSelect.visible = true;
                 this.labelMoveSelection.visible = true;
@@ -229,6 +229,6 @@ class MenuScreen {
 
     //to free up RAM
     destroy() {
-        document.onkeydown = null;
+        // document.onkeydown = null;
     }
 }

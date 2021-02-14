@@ -1,14 +1,14 @@
 class Game {
     //TODO: когда охотник движется между двумя точками, и в эти точки входит таргет, то путь до таргета расчитывается не совсем корректно (охотник может начать движение обратно к точке отправления а потом только идти к таргету
     constructor() {
-        this.difficultyText = ['easy', 'medium', 'hard'];
+        this.difficultyText = ['Easy', 'Medium', 'Hard'];
         this.settings = {
             difficulty: 0,
             p1Control: {
-                left: 'a',
-                right: 'd',
-                up: 'w',
-                down: 's',
+                left: 'KeyA',
+                right: 'KeyD',
+                up: 'KeyW',
+                down: 'KeyS',
             },
             p2Control: {
                 left: 'ArrowLeft',
