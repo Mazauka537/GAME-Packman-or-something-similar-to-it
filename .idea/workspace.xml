@@ -2,10 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6c65f1c7-b71d-48b5-9304-d06d4e112980" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/js/LabeledButton.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/SettingsScreen.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/Button.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/Button.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/Game.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/Game.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/Label.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/Label.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/MenuScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/MenuScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/PlayScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/PlayScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/UIElement.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/UIElement.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +60,15 @@
       <workItem from="1611076083759" duration="4548000" />
       <workItem from="1611335310282" duration="5756000" />
       <workItem from="1611774447125" duration="4475000" />
-      <workItem from="1611856879142" duration="102106000" />
+      <workItem from="1611856879142" duration="103602000" />
+      <workItem from="1613073843322" duration="854000" />
+      <workItem from="1613146536703" duration="41000" />
+      <workItem from="1613146598281" duration="69000" />
+      <workItem from="1613146744772" duration="293000" />
+      <workItem from="1613147248855" duration="291000" />
+      <workItem from="1613147614142" duration="40000" />
+      <workItem from="1613147667614" duration="294000" />
+      <workItem from="1613148018644" duration="16293000" />
     </task>
     <servers />
   </component>
@@ -71,10 +84,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="665" y="179" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1612627713808" />
-    <state x="655" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1611335409711">
+    <state x="655" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1613148020960">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="655" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1611335409711" />
+    <state x="655" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1613148020960" />
     <state x="616" y="240" key="run.anything.popup" timestamp="1611857658042">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

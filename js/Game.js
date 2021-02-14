@@ -1,7 +1,24 @@
 class Game {
     //TODO: когда охотник движется между двумя точками, и в эти точки входит таргет, то путь до таргета расчитывается не совсем корректно (охотник может начать движение обратно к точке отправления а потом только идти к таргету
     constructor() {
-        this.screen = new MenuScreen(this); //new PlayScreen(this);
+        this.difficultyText = ['easy', 'medium', 'hard'];
+        this.settings = {
+            difficulty: 0,
+            p1Control: {
+                left: 'a',
+                right: 'd',
+                up: 'w',
+                down: 's',
+            },
+            p2Control: {
+                left: 'ArrowLeft',
+                right: 'ArrowRight',
+                up: 'ArrowUp',
+                down: 'ArrowDown',
+            }
+        };
+
+        this._screen = new MenuScreen(this); //new PlayScreen(this);
 
         this.frames = 0;
         this.fps = 0;
@@ -9,6 +26,15 @@ class Game {
         this.frameHandlerTimer = setInterval(() => this.frameHandler(), 15);
         this.frameRenderTimer = setInterval(() => this.frameRender(), 0);
         this.fpsTimer = setInterval(() => this.getFPS(), 1000);
+    }
+
+    set screen(value) {
+        this._screen.destroy();
+        this._screen = value;
+    }
+
+    get screen() {
+        return this._screen;
     }
 
     frameHandler() {
