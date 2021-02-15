@@ -4,8 +4,6 @@
     <list default="true" id="6c65f1c7-b71d-48b5-9304-d06d4e112980" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/Hunter.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/Hunter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/Map.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/Map.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/MenuScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/MenuScreen.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/PlayScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/PlayScreen.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -64,7 +62,8 @@
       <workItem from="1613147248855" duration="291000" />
       <workItem from="1613147614142" duration="40000" />
       <workItem from="1613147667614" duration="294000" />
-      <workItem from="1613148018644" duration="24137000" />
+      <workItem from="1613148018644" duration="24897000" />
+      <workItem from="1613406816684" duration="892000" />
     </task>
     <servers />
   </component>
@@ -80,10 +79,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="665" y="179" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1612627713808" />
-    <state x="655" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1613148020960">
+    <state x="655" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1613406817423">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="655" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1613148020960" />
+    <state x="655" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1613406817423" />
     <state x="616" y="240" key="run.anything.popup" timestamp="1611857658042">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
