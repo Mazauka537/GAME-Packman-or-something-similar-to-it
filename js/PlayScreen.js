@@ -3,6 +3,11 @@ class PlayScreen {
         this.game = game;
         this.mode = mode;
         this.status = 'pre-start';
+        this.time = {
+            seconds: 0,
+            minutes: 0,
+        };
+        this.timer = null;
 
         this.map = new Map();
         this.targets = [];
@@ -101,6 +106,7 @@ class PlayScreen {
                 if (this.hunters[i].isNearWayPoint(this.targets[minTargetIndexByDistance])) {
                     this.status = 'caught';
                     this.selectedButton = 0;
+                    clearInterval(this.timer);
                     this.hunters[i].x = this.targets[minTargetIndexByDistance].x;
                     this.hunters[i].y = this.targets[minTargetIndexByDistance].y;
                     break;
@@ -117,6 +123,7 @@ class PlayScreen {
         for (let i = 0; i < this.hunters.length; i++) {
             this.hunters[i].render();
         }
+
         if (this.status === 'caught') {
             ctx.fillStyle = 'rgba(60, 60, 60, 0.7)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -132,6 +139,17 @@ class PlayScreen {
             this.labelMoveSelection.render();
             this.labelSelect.render();
         }
+
+        ctx.beginPath();
+        ctx.fillStyle = '#444';
+        if (this.status === 'caught') ctx.fillStyle = '#ccc';
+        ctx.font = `normal 20px Consolas`;
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        let sec = this.time.seconds < 10 ? '0' + this.time.seconds : this.time.seconds;
+        let min = this.time.minutes < 10 ? '0' + this.time.minutes : this.time.minutes;
+        ctx.fillText(`${min}:${sec}`, canvas.width / 2, 13);
+
         if (this.status === 'pre-start') {
             this.labelMoveToStart.render();
         }
@@ -174,9 +192,18 @@ class PlayScreen {
         }
     }
 
+    timerHandler() {
+        this.time.seconds++;
+        if (this.time.seconds >= 60) {
+            this.time.minutes++;
+            this.time.seconds = 0;
+        }
+    }
+
     keyDownDefault(e, direction, reverseDirection) {
         if (this.status === 'pre-start') {
             this.status = 'playing';
+            this.timer = setInterval(() => this.timerHandler(), 1000);
         }
 
         let targetIndex = 0;
