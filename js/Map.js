@@ -375,7 +375,7 @@ class Map {
         if (this.mapVisible) {
             ctx.beginPath();
 
-            ctx.strokeStyle = '#ddd';
+            ctx.strokeStyle = '#eee';
             ctx.lineWidth = 50;
             ctx.lineCap = 'square';
 

@@ -21,6 +21,7 @@ class Game {
 
         this.frames = 0;
         this.fps = 0;
+        this.showFPS = false;
 
         this.frameHandlerTimer = setInterval(() => this.frameHandler(), 15);
         this.frameRenderTimer = setInterval(() => this.frameRender(), 0);
@@ -47,15 +48,17 @@ class Game {
 
         this.screen.render();
 
-        ctx.beginPath();
-        ctx.fillStyle = 'lime';
-        ctx.font = `normal 24px Consolas`;
-        ctx.textAlign = "left";
-        ctx.textBaseline = "top";
-        ctx.shadowColor = '#000';
-        ctx.shadowBlur = 3;
-        ctx.fillText(this.fps, 10, 10);
-        ctx.shadowBlur = 0;
+        if (this.showFPS) {
+            ctx.beginPath();
+            ctx.fillStyle = 'lime';
+            ctx.font = `normal 24px Consolas`;
+            ctx.textAlign = "left";
+            ctx.textBaseline = "top";
+            ctx.shadowColor = '#000';
+            ctx.shadowBlur = 3;
+            ctx.fillText(this.fps, 10, 10);
+            ctx.shadowBlur = 0;
+        }
     }
 
     getFPS() {

@@ -1,5 +1,6 @@
 class PlayScreen {
     constructor(game, mode) {
+        //TODO: fix bug
         this.game = game;
         this.mode = mode;
         this.status = 'pre-start';
@@ -10,16 +11,30 @@ class PlayScreen {
         this.timer = null;
 
         this.map = new Map();
+
         this.targets = [];
-        this.targets.push(this.map.addNewActor('target', 4, 5.1, 10, '#ccccff')); //60
+        this.targets.push(this.map.addNewActor('target', 4, 5.1, 10, '#bbbbff')); //60
         if (this.mode === 'duo') {
-            this.targets.push(this.map.addNewActor('target', 1, 5.1, 10, '#ccffcc')); //61
+            this.targets.push(this.map.addNewActor('target', 1, 5.1, 10, '#bbffbb')); //61
         }
+
         this.hunters = [];
-        this.hunters.push(this.map.addNewActor('hunter', 59, 5, 8, 'red'));
-        this.hunters.push(this.map.addNewActor('hunter', 24, 3, 8, 'red'));
-        this.hunters.push(this.map.addNewActor('hunter', 36, 4, 8, 'red'));
-        this.hunters.push(this.map.addNewActor('hunter', 49, 2, 8, 'red'));
+        if (this.game.settings.difficulty === 2) {
+            this.hunters.push(this.map.addNewActor('hunter', 36, 5, 8, 'red'));
+            this.hunters.push(this.map.addNewActor('hunter', 27, 4, 8, 'red'));
+            this.hunters.push(this.map.addNewActor('hunter', 49, 3, 8, 'red'));
+            this.hunters.push(this.map.addNewActor('hunter', 20, 2, 8, 'red'));
+        }
+        if (this.game.settings.difficulty === 1) {
+            this.hunters.push(this.map.addNewActor('hunter', 36, 5, 8, 'red'));
+            this.hunters.push(this.map.addNewActor('hunter', 27, 4, 8, 'red'));
+            this.hunters.push(this.map.addNewActor('hunter', 49, 2, 8, 'red'));
+        }
+        if (this.game.settings.difficulty === 0) {
+            this.hunters.push(this.map.addNewActor('hunter', 36, 4, 8, 'red'));
+            this.hunters.push(this.map.addNewActor('hunter', 49, 3, 8, 'red'));
+            this.hunters.push(this.map.addNewActor('hunter', 20, 1.5, 8, 'red'));
+        }
 
         this.title = new Label({
             text: 'GAME OVER!',
