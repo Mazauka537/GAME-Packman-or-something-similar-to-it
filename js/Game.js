@@ -48,6 +48,7 @@ class Game {
         this.screen.render();
 
         ctx.beginPath();
+        ctx.filter = 'none';
         ctx.fillStyle = 'lime';
         ctx.font = `normal 24px Consolas`;
         ctx.textAlign = "left";

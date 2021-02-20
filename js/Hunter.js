@@ -19,8 +19,8 @@ class Hunter extends Actor {
             }
         }
 
-        if (this.movingFrom === target.movingTo && this.movingTo === target.movingFrom) {
-            this.moveTo(map.wayPoints[target.number]);
+        if (this.movingFrom === target.movingTo && this.movingTo === target.movingFrom) { //если тагрет входит в пределы пути охотника
+            this.moveTo(map.wayPoints[target.number]); //то просто двигаемся к охотнику, не меняя при этом точки назначения и отправления
         } else {
             let routeToTarget = map.getRoute(this, [target]).routeTo[target.number];
 
@@ -42,8 +42,13 @@ class Hunter extends Actor {
             map.wayPoints[this.movingTo].ways[this.number] = map.inf;
 
             if (this.isNearWayPoint(map.wayPoints[this.movingTo])) { //если приблизились к точке назначения
-                this.movingFrom = this.movingTo; //то делаем точку назначения точкой отправления
-                this.movingTo = +routeToTarget[1]; //а точкой назначения делаем точку следующую по порядку
+                if (this.movingTo !== target.number) { //если точка назначения не является таргетом
+                    this.movingFrom = this.movingTo; //то делаем точку назначения точкой отправления
+                    this.movingTo = +routeToTarget[1]; //а точкой назначения делаем точку следующую по порядку
+                } else { //если точка назначения - таргет
+                    this.movingFrom = target.movingFrom;
+                    this.movingTo = target.number;
+                }
             }
 
             //заного расчитываем расстояния путей к новым точкам назначения и отправления
