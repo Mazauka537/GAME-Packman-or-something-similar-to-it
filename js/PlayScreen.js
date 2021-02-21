@@ -31,8 +31,8 @@ class PlayScreen {
             this.hunters.push(this.map.addNewActor('hunter', 49, 2, 8, 'red'));
         }
         if (this.game.settings.difficulty === 0) {
-            this.hunters.push(this.map.addNewActor('hunter', 36, 4, 8, 'red'));
-            this.hunters.push(this.map.addNewActor('hunter', 49, 3, 8, 'red'));
+            // this.hunters.push(this.map.addNewActor('hunter', 36, 4, 8, 'red'));
+            // this.hunters.push(this.map.addNewActor('hunter', 49, 3, 8, 'red'));
             this.hunters.push(this.map.addNewActor('hunter', 20, 1.5, 8, 'red'));
         }
 
@@ -103,9 +103,7 @@ class PlayScreen {
 
     frame() {
         if (this.status === 'playing') {
-            for (let i = 0; i < this.targets.length; i++) {
-                this.targets[i].move(this.map);
-            }
+
 
             for (let i = 0; i < this.hunters.length; i++) {
                 //вычисляем дистанцию от охотника до всех таргетов и двигаем охотника к таргету с минимальной дистанцией
@@ -126,6 +124,10 @@ class PlayScreen {
                     this.hunters[i].y = this.targets[minTargetIndexByDistance].y;
                     break;
                 }
+            }
+
+            for (let i = 0; i < this.targets.length; i++) {
+                this.targets[i].move(this.map);
             }
         }
     }

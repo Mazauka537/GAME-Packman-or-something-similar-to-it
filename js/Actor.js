@@ -11,6 +11,9 @@ class Actor extends WayPoint {
 
     moveTo(wayPoint) {
         let distance = this.getDistanceTo(wayPoint);
+        if (distance === this.speed) {
+            distance -= 0.001;
+        }
         let lambda = this.speed / (distance - this.speed);
         if (lambda !== -1) {
             this.x = (this.x + lambda * wayPoint.x) / (1 + lambda);

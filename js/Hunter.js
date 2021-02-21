@@ -24,6 +24,9 @@ class Hunter extends Actor {
         } else {
             let routeToTarget = map.getRoute(this, [target]).routeTo[target.number];
 
+            if (this.ways[+routeToTarget[0]] === 0)
+                routeToTarget.shift();
+
             if (+routeToTarget[0] === this.movingFrom) { //если следующая точка к которой нужно двигаться - точка от которой мы уже движимся
                 //то необходимо развернуться, тоесть поменять точки отправления и назначения
                 let x = this.movingFrom;
@@ -31,8 +34,10 @@ class Hunter extends Actor {
                 this.movingTo = x;
             }
 
-            this.movingTo = +routeToTarget[0]; //устанавливаем точку назначения
+            if (routeToTarget.length !== 0)
+                this.movingTo = +routeToTarget[0]; //устанавливаем точку назначения
 
+            console.log(this.ways[19], this.ways[60], map.wayPoints[19].ways[60], this.movingTo);
             this.moveTo(map.wayPoints[this.movingTo]); //двигаемся к точке назначения
 
             //обнуляем пути
@@ -52,14 +57,14 @@ class Hunter extends Actor {
             }
 
             //заного расчитываем расстояния путей к новым точкам назначения и отправления
-            distanceFrom = +(this.getDistanceTo(map.wayPoints[this.movingFrom]) / map.multiplier).toFixed(1);
-            distanceTo = +(this.getDistanceTo(map.wayPoints[this.movingTo]) / map.multiplier).toFixed(1);
+            distanceFrom = +(this.getDistanceTo(map.wayPoints[this.movingFrom]) / map.multiplier).toFixed(2);
+            distanceTo = +(this.getDistanceTo(map.wayPoints[this.movingTo]) / map.multiplier).toFixed(2);
 
             this.ways[this.movingFrom] = distanceFrom;
             this.ways[this.movingTo] = distanceTo;
 
-            // map.wayPoints[this.movingFrom].ways[this.number] = distanceFrom;
-            // map.wayPoints[this.movingTo].ways[this.number] = distanceTo;
+            map.wayPoints[this.movingFrom].ways[this.number] = distanceFrom;
+            map.wayPoints[this.movingTo].ways[this.number] = distanceTo;
         }
     }
 }

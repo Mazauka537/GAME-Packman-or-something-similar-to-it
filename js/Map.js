@@ -7,11 +7,11 @@ class Map {
 
 
         this.mapVisible = true;
-        this.wayPointsVisible = false;
+        this.wayPointsVisible = true;
+        this.wayPointsNumberVisible = true;
         this.waysVisible = false;
         this.waysCostVisible = false;
         this.wayPointsAvailableTurnsVisible = false;
-        this.wayPointsNumberVisible = false;
     }
 
     getRoute(startWayPoint, endWayPoints) {

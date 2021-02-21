@@ -40,8 +40,8 @@ class Target extends Actor {
             }
 
             //заного расчитываем расстояние путей до точек назначения и отправления
-            distanceFrom = +(this.getDistanceTo(map.wayPoints[this.movingFrom]) / map.multiplier).toFixed(1);
-            distanceTo = +(this.getDistanceTo(map.wayPoints[this.movingTo]) / map.multiplier).toFixed(1);
+            distanceFrom = +(this.getDistanceTo(map.wayPoints[this.movingFrom]) / map.multiplier).toFixed(2);
+            distanceTo = +(this.getDistanceTo(map.wayPoints[this.movingTo]) / map.multiplier).toFixed(2);
 
             this.ways[this.movingFrom] = distanceFrom;
             this.ways[this.movingTo] = distanceTo;
