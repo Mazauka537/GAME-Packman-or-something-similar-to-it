@@ -6,25 +6,20 @@ class Target extends Actor {
         this.nextDirection = 'none';
     }
     
-    move(map) {
-        let distanceFrom, distanceTo;
-
+    move() {
         if (this.direction !== 'none') {
 
-            if (map.wayPoints[this.movingFrom].availableTurns[this.direction] !== undefined) {//если напровление от точки отправления доступно
-                this.moveTo(map.wayPoints[this.movingTo]); //то двигаемся к точке, находящейся в этом направлении
+            if (this.map.wayPoints[this.movingFrom].availableTurns[this.direction] !== undefined) {//если напровление от точки отправления доступно
+                this.moveTo(this.map.wayPoints[this.movingTo]); //то двигаемся к точке, находящейся в этом направлении
             } else { //если мы не можем двигаться в текущем направлении
-                this.x = map.wayPoints[this.movingFrom].x; //то стоим на точке отправления
-                this.y = map.wayPoints[this.movingFrom].y;
+                this.x = this.map.wayPoints[this.movingFrom].x; //то стоим на точке отправления
+                this.y = this.map.wayPoints[this.movingFrom].y;
             }
 
             //убираем существующие пути
-            this.ways[this.movingFrom] = map.inf;
-            this.ways[this.movingTo] = map.inf;
-            map.wayPoints[this.movingFrom].ways[this.number] = map.inf;
-            map.wayPoints[this.movingTo].ways[this.number] = map.inf;
+            this.nullifyWays();
 
-            if (this.isNearWayPoint(map.wayPoints[this.movingTo])) { //когда приблизились к точке назначения
+            if (this.isNearWayPoint(this.map.wayPoints[this.movingTo])) { //когда приблизились к точке назначения
 
                 this.movingFrom = this.movingTo; //делаем точкой отправления ту точку к которой приблизились
 
@@ -36,17 +31,11 @@ class Target extends Actor {
                     this.movingTo = this.availableTurns[this.direction]; //то делаем точку в текущем направлении точкой назначения
                 }
 
-                this.availableTurns = map.wayPoints[this.movingTo].availableTurns; //меняем доступные направления на направления точки назначения
+                this.availableTurns = this.map.wayPoints[this.movingTo].availableTurns; //меняем доступные направления на направления точки назначения
             }
 
             //заного расчитываем расстояние путей до точек назначения и отправления
-            distanceFrom = +(this.getDistanceTo(map.wayPoints[this.movingFrom]) / map.multiplier).toFixed(2);
-            distanceTo = +(this.getDistanceTo(map.wayPoints[this.movingTo]) / map.multiplier).toFixed(2);
-
-            this.ways[this.movingFrom] = distanceFrom;
-            this.ways[this.movingTo] = distanceTo;
-            map.wayPoints[this.movingFrom].ways[this.number] = distanceFrom;
-            map.wayPoints[this.movingTo].ways[this.number] = distanceTo;
+            this.calculateWays();
         }
     }
 }

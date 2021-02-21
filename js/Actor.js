@@ -2,6 +2,8 @@ class Actor extends WayPoint {
     constructor(o = {}) {
         super(o);
 
+        this.map = o.map ?? new Error('Map is required param!');
+
         this.speed = o.speed ?? 0;
         this.movingFrom = o.movingFrom ?? undefined;
         this.movingTo = o.movingTo ?? undefined;
@@ -19,6 +21,24 @@ class Actor extends WayPoint {
             this.x = (this.x + lambda * wayPoint.x) / (1 + lambda);
             this.y = (this.y + lambda * wayPoint.y) / (1 + lambda);
         }
+    }
+
+    nullifyWays() {
+        this.ways[this.movingFrom] = this.map.inf;
+        this.ways[this.movingTo] = this.map.inf;
+        this.map.wayPoints[this.movingFrom].ways[this.number] = this.map.inf;
+        this.map.wayPoints[this.movingTo].ways[this.number] = this.map.inf;
+    }
+
+    calculateWays() {
+        let distanceFrom = +(this.getDistanceTo(this.map.wayPoints[this.movingFrom]) / this.map.multiplier).toFixed(2);
+        let distanceTo = +(this.getDistanceTo(this.map.wayPoints[this.movingTo]) / this.map.multiplier).toFixed(2);
+
+        this.ways[this.movingFrom] = distanceFrom;
+        this.ways[this.movingTo] = distanceTo;
+
+        this.map.wayPoints[this.movingFrom].ways[this.number] = distanceFrom;
+        this.map.wayPoints[this.movingTo].ways[this.number] = distanceTo;
     }
 
     isNearWayPoint(wayPoint) {

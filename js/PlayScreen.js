@@ -31,8 +31,8 @@ class PlayScreen {
             this.hunters.push(this.map.addNewActor('hunter', 49, 2, 8, 'red'));
         }
         if (this.game.settings.difficulty === 0) {
-            // this.hunters.push(this.map.addNewActor('hunter', 36, 4, 8, 'red'));
-            // this.hunters.push(this.map.addNewActor('hunter', 49, 3, 8, 'red'));
+            this.hunters.push(this.map.addNewActor('hunter', 36, 4, 8, 'red'));
+            this.hunters.push(this.map.addNewActor('hunter', 49, 3, 8, 'red'));
             this.hunters.push(this.map.addNewActor('hunter', 20, 1.5, 8, 'red'));
         }
 
@@ -114,7 +114,7 @@ class PlayScreen {
                         minTargetIndexByDistance = j;
                     }
                 }
-                this.hunters[i].move(this.map, this.targets[minTargetIndexByDistance]);
+                this.hunters[i].move(this.targets[minTargetIndexByDistance]);
 
                 if (this.hunters[i].isNearWayPoint(this.targets[minTargetIndexByDistance])) {
                     this.status = 'caught';
@@ -127,7 +127,7 @@ class PlayScreen {
             }
 
             for (let i = 0; i < this.targets.length; i++) {
-                this.targets[i].move(this.map);
+                this.targets[i].move();
             }
         }
     }

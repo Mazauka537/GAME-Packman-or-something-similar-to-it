@@ -7,8 +7,8 @@ class Map {
 
 
         this.mapVisible = true;
-        this.wayPointsVisible = true;
-        this.wayPointsNumberVisible = true;
+        this.wayPointsVisible = false;
+        this.wayPointsNumberVisible = false;
         this.waysVisible = false;
         this.waysCostVisible = false;
         this.wayPointsAvailableTurnsVisible = false;
@@ -337,10 +337,10 @@ class Map {
         let wayPoint;
         switch (actorType) {
             case 'target':
-                wayPoint = new Target();
+                wayPoint = new Target({map: this});
                 break;
             case 'hunter':
-                wayPoint = new Hunter();
+                wayPoint = new Hunter({map: this});
                 break;
             default:
                 throw new Error('Unknown type of Actor');
