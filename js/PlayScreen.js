@@ -103,7 +103,9 @@ class PlayScreen {
 
     frame() {
         if (this.status === 'playing') {
-
+            for (let i = 0; i < this.targets.length; i++) {
+                this.targets[i].move();
+            }
 
             for (let i = 0; i < this.hunters.length; i++) {
                 //вычисляем дистанцию от охотника до всех таргетов и двигаем охотника к таргету с минимальной дистанцией
@@ -124,10 +126,6 @@ class PlayScreen {
                     this.hunters[i].y = this.targets[minTargetIndexByDistance].y;
                     break;
                 }
-            }
-
-            for (let i = 0; i < this.targets.length; i++) {
-                this.targets[i].move();
             }
         }
     }
